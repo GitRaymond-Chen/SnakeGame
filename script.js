@@ -50,9 +50,11 @@ function setPosition(element, position) {
 
 // Draw food function
 function drawFood() {
-  const foodElement = createGameElement("div", "food");
-  setPosition(foodElement, food);
-  board.appendChild(foodElement);
+  if (gameStarted) {
+    const foodElement = createGameElement("div", "food");
+    setPosition(foodElement, food);
+    board.appendChild(foodElement);
+  }
 }
 
 // Generate food
@@ -117,16 +119,16 @@ function handleKeyPress(event) {
   } else {
     switch (event.key) {
       case "ArrowUp":
-        direction = "up";
+        if (direction != "down") direction = "up";
         break;
       case "ArrowDown":
-        direction = "down";
+        if (direction != "up") direction = "down";
         break;
       case "ArrowLeft":
-        direction = "left";
+        if (direction != "right") direction = "left";
         break;
       case "ArrowRight":
-        direction = "right";
+        if (direction != "left") direction = "right";
         break;
     }
   }
